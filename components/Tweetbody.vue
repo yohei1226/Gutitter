@@ -226,6 +226,10 @@
 .tweet-name{
   font-size: 25px;
 }
+.tweet-body:hover{
+  opacity: 0.5;
+
+}
 
 @media screen and (max-width: 600px){
   .tweet{
@@ -233,6 +237,8 @@
   }
 .tweet-body{
   width: 90% !important;
+  
 }
+
 }
 </style>

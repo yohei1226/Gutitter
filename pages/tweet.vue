@@ -11,8 +11,29 @@
           Tweet
         </v-btn>
       </div>
+      <v-card width="80%"
+              class="mx-auto"
+              v-if="tweetImage"
+              style="display:flex; justify-content:center"
+              >
+        <img :src="tweetImage"
+              class="w-60 h-60 object-cover border rounded-full"      
+                    />
+      </v-card>
+      <div v-else>
+          
+      </div>
+
+      <!-- イメージ選択のアイコン -->
       <div class="tweet-image-section">
-        <i class="far fa-image fa-3x tweet-image-select" style="cursor:pointer;"></i>
+        <i class="far fa-image fa-3x tweet-image-select" style="cursor:pointer;">
+          <input
+                type="file"
+                accept="image/*"
+                @change="changeImg"
+                style="display: none"
+              />
+        </i>
       </div>
 
   <div class="sort-container mt-4">
@@ -88,6 +109,8 @@ export default {
       currentImg: this.$firebase.auth().currentUser.photoURL,
 
       showTweet:false,
+
+      tweetImage:'',
 
 
       
@@ -238,7 +261,20 @@ export default {
 
           resetForm() {
             this.form.message.val = null
-          }
+          },
+
+
+          changeImg (e) {
+           // ここは選択した画像のプレビューをするだけ
+            this.tweetImage = e.target.files[0]
+            if (this.tweetImage) {
+              const reader = new FileReader()
+              reader.readAsDataURL(this.tweetImage)
+              reader.onload = () => {
+                this.tweetImage = reader.result + ''
+              }
+            }
+          },
 
     },
 
@@ -315,4 +351,6 @@ export default {
  .tweet-image-select:hover{
    opacity: 0.7;
  }
+
+ 
 </style>

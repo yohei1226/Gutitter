@@ -75,6 +75,7 @@
             {{tweet.message}}
           </p>
         </v-card-text>
+        
 
         <v-card-actions>
           <v-list-item class="grow">
@@ -230,6 +231,7 @@
   opacity: 0.5;
 
 }
+
 
 @media screen and (max-width: 600px){
   .tweet{

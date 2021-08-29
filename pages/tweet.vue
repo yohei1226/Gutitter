@@ -1,6 +1,6 @@
 <template>
     <div class="test-container">
-      <div class="pt-10 mx-auto tweet-input" style="display:flex">
+      <div class="pt-10 mx-auto tweet-input mb-3" style="display:flex">
         <v-text-field v-model="form.message.val" placeholder="発言してみよう"></v-text-field>
         <v-btn
           depressed
@@ -10,6 +10,9 @@
         >
           Tweet
         </v-btn>
+      </div>
+      <div class="tweet-image-section">
+        <i class="far fa-image fa-3x tweet-image-select" style="cursor:pointer;"></i>
       </div>
 
   <div class="sort-container mt-4">
@@ -302,5 +305,14 @@ export default {
  .sort-container{
      max-width: 80%;
      margin: 0 auto;
+ }
+
+ .tweet-image-section{
+   width: 80%;
+   margin: 0 auto 100px auto;
+ }
+
+ .tweet-image-select:hover{
+   opacity: 0.7;
  }
 </style>

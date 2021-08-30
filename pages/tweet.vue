@@ -11,13 +11,17 @@
           Tweet
         </v-btn>
       </div>
-      <v-card width="80%"
+      <v-card width="30%"
               class="mx-auto"
-              v-if="tweetImage"
-              style="display:flex; justify-content:center"
+              v-if="tweetImagePreview"
+              style=""
               >
-        <img :src="tweetImage"
-              class="w-60 h-60 object-cover border rounded-full"      
+        <div style="display:flex; justify-content:flex-end">
+          <i class="far fa-times-circle fa-3x" @click="closePreview"></i>           
+        </div>
+        
+        <img :src="tweetImagePreview"
+              class="w-60 h-60 object-cover border mx-auto"      
                     />
       </v-card>
       <div v-else>
@@ -26,14 +30,15 @@
 
       <!-- イメージ選択のアイコン -->
       <div class="tweet-image-section">
-        <i class="far fa-image fa-3x tweet-image-select" style="cursor:pointer;">
+        <label class="far fa-image fa-3x tweet-image-select" style="cursor:pointer;">
           <input
                 type="file"
                 accept="image/*"
                 @change="changeImg"
                 style="display: none"
               />
-        </i>
+        </label>
+        
       </div>
 
   <div class="sort-container mt-4">
@@ -110,7 +115,7 @@ export default {
 
       showTweet:false,
 
-      tweetImage:'',
+      tweetImagePreview:'',
 
 
       
@@ -266,14 +271,18 @@ export default {
 
           changeImg (e) {
            // ここは選択した画像のプレビューをするだけ
-            this.tweetImage = e.target.files[0]
-            if (this.tweetImage) {
+            this.tweetImagePreview = e.target.files[0]
+            if (this.tweetImagePreview) {
               const reader = new FileReader()
-              reader.readAsDataURL(this.tweetImage)
+              reader.readAsDataURL(this.tweetImagePreview)
               reader.onload = () => {
-                this.tweetImage = reader.result + ''
+                this.tweetImagePreview = reader.result + ''
               }
             }
+          },
+
+          closePreview(){
+            this.tweetImagePreview = ''
           },
 
     },

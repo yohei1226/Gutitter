@@ -11,6 +11,8 @@ export const state = () => ({
  },
 
  
+
+ 
  
 })
 
@@ -18,6 +20,8 @@ export const getters = {
  user: state => {
    return state.user
  },
+
+ 
  
 }
 
@@ -126,6 +130,8 @@ googleLogIn ({ dispatch }) {
         alert(error)
       })
   },
+
+  
 
 }
 

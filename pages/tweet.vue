@@ -34,7 +34,7 @@
           <input
                 type="file"
                 accept="image/*"
-                @change="changeImg"
+                @change="changeTweetImage"
                 style="display: none"
               />
         </label>
@@ -143,6 +143,7 @@ export default {
           'photoURL': snapshot.data().photoURL,
           'show': snapshot.data().show,
           'good': snapshot.data().good,
+          'tweetImage':snapshot.data().tweetImage,
         }
           this.tweets.push(data);
           this.showTweet = true
@@ -246,6 +247,7 @@ export default {
               id:documentId,
               // show:true,
               good:0,
+              tweetImage:this.tweetImagePreview,
 
           })
 
@@ -269,8 +271,8 @@ export default {
           },
 
 
-          changeImg (e) {
-           // ここは選択した画像のプレビューをするだけ
+          changeTweetImage (e) {
+
             this.tweetImagePreview = e.target.files[0]
             if (this.tweetImagePreview) {
               const reader = new FileReader()
@@ -280,6 +282,7 @@ export default {
               }
             }
           },
+          
 
           closePreview(){
             this.tweetImagePreview = ''

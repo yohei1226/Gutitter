@@ -75,7 +75,18 @@
             {{tweet.message}}
           </p>
         </v-card-text>
-        
+      <!-- ツイートに添付される画像 -->
+        <v-card width="30%"
+              class="mx-auto"
+              v-if="tweet.tweetImage"
+              >
+          <img :src="tweet.tweetImage"
+                class="w-60 h-60 object-cover border mx-auto"      
+                      />
+        </v-card>
+        <div v-else>
+          
+        </div>
 
         <v-card-actions>
           <v-list-item class="grow">

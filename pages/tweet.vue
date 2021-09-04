@@ -182,6 +182,7 @@ export default {
               'photoURL': snapshot.data().photoURL,
               'show': snapshot.data().show,
               'good': snapshot.data().good,
+              'tweetImage':snapshot.data().tweetImage,
               }
 
             this.tweets.push(data);
@@ -211,6 +212,7 @@ export default {
                   'photoURL': snapshot.data().photoURL,
                   'show': snapshot.data().show,
                   'good': snapshot.data().good,
+                  'tweetImage':snapshot.data().tweetImage,
                 }
 
               this.tweets.push(data);
@@ -249,10 +251,12 @@ export default {
               good:0,
               tweetImage:this.tweetImagePreview,
 
+          }).then(()=>{
+            this.resetForm()
+            this.newOrder()
+
           })
 
-         this.resetForm()
-         this.newOrder()
             
         } catch (e) {
           console.log(e)

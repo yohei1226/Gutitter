@@ -78,15 +78,15 @@
       <!-- ツイートに添付される画像 -->
         <v-card width="30%"
               class="mx-auto"
-              v-if="tweet.tweetImage"
+              v-show="tweet.tweetImage"
               >
           <img :src="tweet.tweetImage"
-                class="w-60 h-60 object-cover border mx-auto"      
+                class="object-cover border mx-auto"      
                       />
         </v-card>
-        <div v-else>
+        <!-- <div v-else>
           
-        </div>
+        </div> -->
 
         <v-card-actions>
           <v-list-item class="grow">
@@ -146,7 +146,7 @@
         }
       },
 
-      tweets:[],
+      // tweets:[],
 
       deleteId:null,
 
@@ -172,9 +172,17 @@
     user () {
       return this.$store.getters['user']
         },
+    tweets () {
+      return this.$store.getters['tweets']
+        },    
       },
 
       methods: {
+
+        // testFunction(){
+        //    const id = this.$route.params['id']
+        //    console.log(id)
+        // },
 
         // 編集機能---------------------------------------------------
         async editTweet(index){

@@ -99,7 +99,7 @@ export default {
       },
 
 
-      tweets:[],
+      // tweets:[],
 
       deleteId:null,
 
@@ -118,6 +118,8 @@ export default {
       tweetImagePreview:'',
 
 
+
+
       
       
 
@@ -131,7 +133,8 @@ export default {
           .collection('tweets')
           .orderBy('createdAt', 'desc')
           .onSnapshot((tweetsSnapShot) => {
-          this.tweets = []
+          // this.tweets = []
+          this.$store.dispatch('emptyTweets')
           tweetsSnapShot.docs.forEach((snapshot) => {
           console.log(snapshot.data())
           let data = {
@@ -145,10 +148,12 @@ export default {
           'good': snapshot.data().good,
           'tweetImage':snapshot.data().tweetImage,
         }
-          this.tweets.push(data);
+          // this.tweets.push(data);
+          this.$store.dispatch('pushToTweets',data)
           this.showTweet = true
         });
       });
+    
 
     },
 
@@ -158,10 +163,19 @@ export default {
     user () {
       return this.$store.getters['user']
         },
-      },
+    tweets () {
+      return this.$store.getters['tweets']
+        },
+    
+        
 
+  },
         
   methods: {
+    testFunction(){
+           const id = this.$route.params.id
+           console.log(id)
+        },
 
         // 並び替えメソッド
         async newOrder(){
@@ -170,7 +184,8 @@ export default {
             .orderBy('createdAt', 'desc')
             .get().then((tweetsSnapShot) => {
 
-            this.tweets = []
+            // this.tweets = []
+            this.$store.dispatch('emptyTweets')
             tweetsSnapShot.docs.forEach((snapshot) => {
 
             let data = {
@@ -185,7 +200,9 @@ export default {
               'tweetImage':snapshot.data().tweetImage,
               }
 
-            this.tweets.push(data);
+            // this.tweets.push(data);
+            this.$store.dispatch('pushToTweets',data)
+
 
               });
             });
@@ -200,7 +217,8 @@ export default {
               .orderBy('createdAt', 'asc')
               .get().then((tweetsSnapShot) => {
 
-              this.tweets = []
+              // this.tweets = []
+              this.$store.dispatch('emptyTweets')
               tweetsSnapShot.docs.forEach((snapshot) => {
 
                   let data = {
@@ -215,7 +233,8 @@ export default {
                   'tweetImage':snapshot.data().tweetImage,
                 }
 
-              this.tweets.push(data);
+              // this.tweets.push(data);
+              this.$store.dispatch('pushToTweets',data)
 
               });
             });
@@ -254,7 +273,7 @@ export default {
           }).then(()=>{
             this.resetForm()
             this.newOrder()
-
+            this.tweetImagePreview = ''
           })
 
             

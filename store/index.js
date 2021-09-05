@@ -10,6 +10,7 @@ export const state = () => ({
    photoURL: '',
  },
 
+ tweets:[],
  
 
  
@@ -19,6 +20,9 @@ export const state = () => ({
 export const getters = {
  user: state => {
    return state.user
+ },
+ tweets: state => {
+   return state.tweets
  },
 
  
@@ -131,7 +135,13 @@ googleLogIn ({ dispatch }) {
       })
   },
 
-  
+  pushToTweets({commit},data){
+   commit('pushToTweets')
+  },
+
+  emptyTweets({commit}){
+   commit('emptyTweets')
+  },
 
 }
 
@@ -149,6 +159,13 @@ export const mutations = {
   },
   updateUserImage(state,url){
    state.user.photoURL = url
+  },
+  pushToTweets (state,data){
+    state.tweets.push(data) 
+  },
+
+  emptyTweets (state){
+   state.tweets = []
   },
 
   

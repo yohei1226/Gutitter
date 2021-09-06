@@ -9,7 +9,7 @@ export const state = () => ({
    name: '',
    photoURL: '',
  },
-
+// ツイートの格納場所　
  tweets:[],
  
 
@@ -136,36 +136,37 @@ googleLogIn ({ dispatch }) {
   },
 
   pushToTweets({commit},data){
-   commit('pushToTweets')
+   commit('pushToTweets',data)
   },
-
+  
   emptyTweets({commit}){
-   commit('emptyTweets')
+    commit('emptyTweets')
   },
-
+  
 }
 
 
 export const mutations = {
- getData (state, user) {
-   state.user = user
-
- },
- logOut (state) {
+  getData (state, user) {
+    state.user = user
+    
+  },
+  logOut (state) {
     state.user = ''
   },
   switchLogin (state) {
     state.user.login = true
   },
   updateUserImage(state,url){
-   state.user.photoURL = url
+    state.user.photoURL = url
   },
   pushToTweets (state,data){
     state.tweets.push(data) 
+    // console.log(data)
   },
-
+  
   emptyTweets (state){
-   state.tweets = []
+    state.tweets = []
   },
 
   

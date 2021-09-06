@@ -64,8 +64,10 @@
       </v-list>
     </v-menu>
   </div>
-    
 
+<!-- <v-btn @click="pushToTweets">test</v-btn> -->
+<!-- <v-btn @click="emptyTweets">emptyTweets</v-btn> -->
+<!-- <p>{{tweets}}</p> -->
 
       <!--ツイートのボディ -->
       <div v-for="(tweet,index) in tweets" :key="index" v-show="showTweet">
@@ -172,10 +174,13 @@ export default {
   },
         
   methods: {
-    testFunction(){
-           const id = this.$route.params.id
-           console.log(id)
-        },
+    // pushToTweets(){
+    //        let data = '配列に格納するデータ'
+    //        this.$store.dispatch('pushToTweets',data)
+    //     },
+    //  emptyTweets(){
+    //    this.$store.dispatch('emptyTweets')
+    //  },   
 
         // 並び替えメソッド
         async newOrder(){

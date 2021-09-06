@@ -91,8 +91,8 @@ export default {
             show:null,
             show2:null,
             nav_lists:[
-                {name: 'Home',icon: 'mdi-home',route: '/',},
-                {name: 'Tweet',icon: 'far fa-star',route: '/tweet',},
+                {name: 'Home',icon: 'mdi-home',route: '/home',},
+                {name: 'Tweet',icon: 'far fa-star',route: '/',},
                 {name: 'User',icon: 'far fa-user-circle',route: '/profile',},
                 ],
               }  

@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div >
     <v-card
         class="mx-auto justify-center mx-auto mt-10 tweet-body"
         color="grey lighten-4"
         dark
         max-width="80%"
         align="center"
+        
       > 
         <v-card-title class="icons">
 
@@ -178,6 +179,9 @@
       },
 
       methods: {
+        // test(e){
+        //  console.log(e)
+        // },
 
         // testFunction(){
         //    const id = this.$route.params['id']

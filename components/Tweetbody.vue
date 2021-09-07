@@ -6,6 +6,7 @@
         dark
         max-width="80%"
         align="center"
+        @click="moveToReplyPage(tweet.id)"
         
       > 
         <v-card-title class="icons">
@@ -179,14 +180,9 @@
       },
 
       methods: {
-        // test(e){
-        //  console.log(e)
-        // },
-
-        // testFunction(){
-        //    const id = this.$route.params['id']
-        //    console.log(id)
-        // },
+        moveToReplyPage(tweetId){
+          this.$router.push(`/replypage/${tweetId}`)
+        },
 
         // 編集機能---------------------------------------------------
         async editTweet(index){

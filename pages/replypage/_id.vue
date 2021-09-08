@@ -6,8 +6,7 @@
         dark
         max-width="80%"
         align="center"
-
-        
+       
       > 
         
 
@@ -80,8 +79,8 @@
         </v-btn>
       </div>
 
-      <v-list three-line max-width="80%" class="mx-auto">
-      <template v-for="(reply, index) in replys">
+      <v-list three-line max-width="80%" class="mx-auto" v-for="(reply, index) in replys" :key="index">
+      <template>
         <v-subheader
           v-if="reply.header"
           :key="reply.header"
@@ -97,15 +96,43 @@
         <v-list-item
           v-else
           :key="reply.title"
+          
         >
           <v-list-item-avatar width="70px" height="70px">
-            <v-img :src="reply.avatar"></v-img>
+            <v-img :src="reply.photoURL"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title></v-list-item-title>
-            <!-- <v-list-item-subtitle>aaaaaaaaaaaaaaaaaaaaa</v-list-item-subtitle> -->
+            <!-- <v-list-item-title></v-list-item-title> -->
+            <v-list-item-subtitle>{{reply.message}}</v-list-item-subtitle>
+            <v-divider></v-divider>
           </v-list-item-content>
+           <!-- <p class="pl-10">ahos</p> -->
+           <!-- <i class="fas fa-ellipsis-v fa-lg"></i> -->
+
+    <v-menu
+      transition="slide-x-transition"
+      bottom
+      right
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <i
+          v-bind="attrs"
+          v-on="on"
+          class="fas fa-ellipsis-v fa-lg"
+        >
+        </i>
+      </template>
+
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
         </v-list-item>
       </template>
     </v-list>
@@ -121,38 +148,13 @@ data() {
         id:this.$route.params.id,
         tweetData:[],
         replyMessage:'',
-
-        replys: [
-        { header: 'replys' },
-        {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        },
-        { divider: true, inset: true },
-        // {
-        //   avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-        //   title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-        //   subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
-        // },
-        // { divider: true, inset: true },
-        // {
-        //   avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-        //   title: 'Oui oui',
-        //   subtitle: '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
-        // },
-        // { divider: true, inset: true },
-        // {
-        //   avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-        //   title: 'Birthday gift',
-        //   subtitle: '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
-        // },
-        // { divider: true, inset: true },
-        // {
-        //   avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-        //   title: 'Recipe to try',
-        //   subtitle: '<span class="text--primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-        // },
+        replys: [],
+        items: [
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me 2' },
       ],
-        
     }
 },
 
@@ -175,6 +177,35 @@ computed: {
           }).then(()=>{
               console.log(this.tweetData)
           })
+      
+     await this.$firestore
+          .collection('replys').doc(this.id)
+          .collection('comment')
+          .orderBy('createdAt', 'desc')
+          .onSnapshot((replysSnapShot) => {
+          this.replys = []
+        //   this.$store.dispatch('emptyTweets')
+          replysSnapShot.docs.forEach((snapshot) => {
+          console.log(snapshot.data())
+          let data = {
+        //   'name': snapshot.data().name,
+          'message': snapshot.data().message,
+        //   'user': snapshot.data().user,
+        //   'date': snapshot.data().createdAt,
+        //   'id': snapshot.data().id,
+          'photoURL': snapshot.data().photoURL,
+        //   'show': snapshot.data().show,
+          'good': snapshot.data().good,
+        //   'divider': snapshot.data().divider,
+        //   'inset': snapshot.data().inset,
+          
+        //   'tweetImage':snapshot.data().tweetImage,
+        }
+          this.replys.push(data);
+        //   this.$store.dispatch('pushToTweets',data)
+        //   this.showTweet = true
+        });
+      }); 
 
   },
 
@@ -212,6 +243,8 @@ computed: {
               photoURL:user.photoURL,
               createdAt: new Date().toLocaleString(),
               id:docId2,
+              divider:true,
+              inset:true,
             //   good:0,
             //   tweetImage:this.tweetImagePreview,
 
@@ -231,5 +264,10 @@ computed: {
 }
 </script>
 <style>
-
+ .replyContent{
+   border-bottom: 1px solid grey;
+ }
+ .fa-ellipsis-v{
+     color: grey;
+ }
 </style>

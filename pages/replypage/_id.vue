@@ -66,7 +66,7 @@
           </v-list-item>
         </v-card-actions>
       </v-card>
-<p>{{replyMessage}}</p>
+
       <div class="pt-10 mx-auto tweet-input mb-3 mt-16" style="display:flex">
         <v-text-field placeholder="返信をツイート" v-model="replyMessage"></v-text-field>
         <v-btn
@@ -103,7 +103,7 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <!-- <v-list-item-title></v-list-item-title> -->
+            <v-list-item-title>{{reply.name}}</v-list-item-title>
             <v-list-item-subtitle>{{reply.message}}</v-list-item-subtitle>
             <v-divider></v-divider>
           </v-list-item-content>
@@ -120,6 +120,7 @@
           v-bind="attrs"
           v-on="on"
           class="fas fa-ellipsis-v fa-lg"
+          v-show="reply.name === user.uid"
         >
         </i>
       </template>
@@ -188,11 +189,11 @@ computed: {
           replysSnapShot.docs.forEach((snapshot) => {
           console.log(snapshot.data())
           let data = {
-        //   'name': snapshot.data().name,
+          'name': snapshot.data().name,
           'message': snapshot.data().message,
         //   'user': snapshot.data().user,
         //   'date': snapshot.data().createdAt,
-        //   'id': snapshot.data().id,
+          'id': snapshot.data().id,
           'photoURL': snapshot.data().photoURL,
         //   'show': snapshot.data().show,
           'good': snapshot.data().good,

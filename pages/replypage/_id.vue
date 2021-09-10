@@ -79,7 +79,7 @@
         </v-btn>
       </div>
 
-      <v-list three-line max-width="80%" class="mx-auto" v-for="(reply, index) in replys" :key="index">
+      <v-list three-line max-width="80%" class="mx-auto" v-for="(reply, index) in replys" :key="index" @click="deleteReply">
       <template>
         <v-subheader
           v-if="reply.header"
@@ -130,7 +130,7 @@
           v-for="(item, i) in items"
           :key="i"
         >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title @click="deleteReply(reply.id)">{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -151,10 +151,7 @@ data() {
         replyMessage:'',
         replys: [],
         items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
+        { title: 'DeleteReply' },
       ],
     }
 },
@@ -211,6 +208,14 @@ computed: {
   },
 
   methods:{
+   
+    async deleteReply(replyId){
+     console.log(replyId)
+     await this.$firestore.collection('replys').doc(this.id)
+           .collection('comment').doc(replyId).delete()
+
+    },
+
     async goodButton(){
 
           this.goodId = this.tweetData.id

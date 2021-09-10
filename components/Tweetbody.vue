@@ -6,7 +6,6 @@
         dark
         max-width="80%"
         align="center"
-        @click="moveToReplyPage(tweet.id)"
         
       > 
         <v-card-title class="icons">
@@ -72,20 +71,25 @@
           </div>
         </v-card-title>
 
-        <v-card-text class="headline font-weight-bold">
+        <v-card-text class="headline font-weight-bold"
+                     @click="moveToReplyPage(tweet.id)"
+        >
           <p class="tweet">
             {{tweet.message}}
           </p>
         </v-card-text>
       <!-- ツイートに添付される画像 -->
+       <div @click="moveToReplyPage(tweet.id)">
         <v-card width="30%"
               class="mx-auto"
               v-show="tweet.tweetImage"
+              
               >
           <img :src="tweet.tweetImage"
                 class="object-cover border mx-auto"      
                       />
         </v-card>
+       </div>
         <!-- <div v-else>
           
         </div> -->

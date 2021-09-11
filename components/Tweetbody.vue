@@ -106,7 +106,8 @@
                 <!-- :src="currentImg" -->
 
             <v-list-item-content>
-              <v-list-item-title class="tweet-name">{{tweet.user}}</v-list-item-title>
+              <v-list-item-title class="tweet-name" v-if="tweet.user">{{tweet.user}}</v-list-item-title>
+              <v-list-item-title class="tweet-name" v-else>名無しさん</v-list-item-title>
             </v-list-item-content>
 
             <v-row

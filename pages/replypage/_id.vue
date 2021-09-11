@@ -103,8 +103,9 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>{{reply.name}}</v-list-item-title>
-            <v-list-item-subtitle>{{reply.message}}</v-list-item-subtitle>
+            <v-list-item-title v-if="reply.user">{{reply.user}}</v-list-item-title>
+            <v-list-item-title v-else>名無しさん</v-list-item-title>
+            <v-list-item-subtitle><p class="reply-message">{{reply.message}}</p></v-list-item-subtitle>
             <v-divider></v-divider>
           </v-list-item-content>
            <!-- <p class="pl-10">ahos</p> -->
@@ -179,7 +180,7 @@ computed: {
      await this.$firestore
           .collection('replys').doc(this.id)
           .collection('comment')
-          .orderBy('createdAt', 'desc')
+          .orderBy('createdAt', 'asc')
           .onSnapshot((replysSnapShot) => {
           this.replys = []
         //   this.$store.dispatch('emptyTweets')
@@ -275,5 +276,9 @@ computed: {
  }
  .fa-ellipsis-v{
      color: grey;
+ }
+ .reply-message{
+     font-size: 1.2rem;
+     margin: 0px !important;
  }
 </style>

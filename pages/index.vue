@@ -135,7 +135,6 @@ export default {
           .collection('tweets')
           .orderBy('createdAt', 'desc')
           .onSnapshot((tweetsSnapShot) => {
-          // this.tweets = []
           this.$store.dispatch('emptyTweets')
           tweetsSnapShot.docs.forEach((snapshot) => {
           console.log(snapshot.data())
@@ -150,11 +149,37 @@ export default {
           'good': snapshot.data().good,
           'tweetImage':snapshot.data().tweetImage,
         }
-          // this.tweets.push(data);
           this.$store.dispatch('pushToTweets',data)
           this.showTweet = true
+          // let lastVisible = snapshot.docs[snapshot.docs];
+          // console.log(snapshot)
+          // this.$firestore.collection('tweets')
+          // .orderBy('createdAt','desc').startAfter(lastVisible).limit(5)
         });
       });
+
+    //  await this.$firestore
+    //       .collection('tweets')
+    //       .orderBy('createdAt', 'desc')
+    //       .onSnapshot((tweetsSnapShot) => {
+    //       this.$store.dispatch('emptyTweets')
+    //       tweetsSnapShot.docs.forEach((snapshot) => {
+    //       console.log(snapshot.data())
+    //       let data = {
+    //       'name': snapshot.data().name,
+    //       'message': snapshot.data().message,
+    //       'user': snapshot.data().user,
+    //       'date': snapshot.data().createdAt,
+    //       'id': snapshot.data().id,
+    //       'photoURL': snapshot.data().photoURL,
+    //       'show': snapshot.data().show,
+    //       'good': snapshot.data().good,
+    //       'tweetImage':snapshot.data().tweetImage,
+    //     }
+    //       this.$store.dispatch('pushToTweets',data)
+    //       this.showTweet = true
+    //     });
+    //   });
     
 
     },

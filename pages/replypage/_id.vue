@@ -144,7 +144,7 @@
 
 <script>
 export default {
-
+middleware: ['checkLogOut'],
 data() {
     return {
         id:this.$route.params.id,
@@ -180,7 +180,7 @@ computed: {
      await this.$firestore
           .collection('replys').doc(this.id)
           .collection('comment')
-          .orderBy('createdAt', 'asc')
+          .orderBy('createdAt', 'desc')
           .onSnapshot((replysSnapShot) => {
           this.replys = []
         //   this.$store.dispatch('emptyTweets')
@@ -189,8 +189,8 @@ computed: {
           let data = {
           'name': snapshot.data().name,
           'message': snapshot.data().message,
-        //   'user': snapshot.data().user,
-        //   'date': snapshot.data().createdAt,
+          'user': snapshot.data().user,
+          'date': snapshot.data().createdAt,
           'id': snapshot.data().id,
           'photoURL': snapshot.data().photoURL,
         //   'show': snapshot.data().show,

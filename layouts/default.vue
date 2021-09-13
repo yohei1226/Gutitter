@@ -128,8 +128,8 @@ export default {
         },
 
         toPage(nav_list){
-          console.log(nav_list)
-          this.$router.replace(nav_list.route)
+                console.log(nav_list)
+                this.$router.replace(nav_list.route)
         },
     },
 }

@@ -40,7 +40,8 @@
                 <!-- :src="currentImg" -->
 
             <v-list-item-content>
-              <v-list-item-title class="tweet-name">{{tweetData.user}}</v-list-item-title>
+              <v-list-item-title class="tweet-name" v-if="tweetData.user">{{tweetData.user}}</v-list-item-title>
+              <v-list-item-title class="tweet-name" v-else>名無しさん</v-list-item-title>
             </v-list-item-content>
 
             <v-row
@@ -103,8 +104,8 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title v-if="reply.user">{{reply.user}}</v-list-item-title>
-            <v-list-item-title v-else>名無しさん</v-list-item-title>
+            <v-list-item-title v-if="reply.user">{{reply.user}} {{reply.date}}</v-list-item-title>
+            <v-list-item-title v-else>名無しさん {{reply.date}}</v-list-item-title>
             <v-list-item-subtitle><p class="reply-message">{{reply.message}}</p></v-list-item-subtitle>
             <v-divider></v-divider>
           </v-list-item-content>
@@ -180,7 +181,7 @@ computed: {
      await this.$firestore
           .collection('replys').doc(this.id)
           .collection('comment')
-          .orderBy('createdAt', 'desc')
+          .orderBy('createdAt', "desc")
           .onSnapshot((replysSnapShot) => {
           this.replys = []
         //   this.$store.dispatch('emptyTweets')

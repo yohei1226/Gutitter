@@ -12,7 +12,8 @@ export const state = () => ({
 // ツイートの格納場所　
  tweets:[],
  
-
+// リプライの格納場所
+replys:[],
  
  
 })
@@ -24,7 +25,9 @@ export const getters = {
  tweets: state => {
    return state.tweets
  },
-
+replys: state => {
+ return state.replys
+},
  
  
 }
@@ -135,12 +138,19 @@ googleLogIn ({ dispatch }) {
       })
   },
 
+  // 
   pushToTweets({commit},data){
    commit('pushToTweets',data)
+  },
+  pushToReplys({commit},data){
+   commit('pushToReplys',data)
   },
   
   emptyTweets({commit}){
     commit('emptyTweets')
+  },
+  emptyReplys({commit}){
+    commit('emptyReplys')
   },
   
 }
@@ -164,9 +174,16 @@ export const mutations = {
     state.tweets.push(data) 
     // console.log(data)
   },
+  pushToReplys (state,data){
+    state.replys.push(data) 
+    // console.log(data)
+  },
   
   emptyTweets (state){
     state.tweets = []
+  },
+  emptyReplys (state){
+    state.replys = []
   },
 
   

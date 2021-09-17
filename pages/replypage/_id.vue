@@ -32,7 +32,7 @@
           <v-list-item class="grow">
             <v-list-item-avatar color="grey darken-3" size="62">
               <v-img
-                class="elevation-6"
+                class="elevation-6 replypage-hovers"
                 alt=""
                 :src="tweetData.photoURL"
               ></v-img>
@@ -100,7 +100,7 @@
           
         >
           <v-list-item-avatar width="70px" height="70px">
-            <v-img :src="reply.photoURL"></v-img>
+            <v-img :src="reply.photoURL" class="replypage-hovers"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -151,7 +151,7 @@ data() {
         id:this.$route.params.id,
         tweetData:[],
         replyMessage:'',
-        replys: [],
+        // replys: [],
         items: [
         { title: 'DeleteReply' },
       ],
@@ -164,6 +164,9 @@ computed: {
         },
     tweets () {
       return this.$store.getters['tweets']
+        },
+    replys () {
+      return this.$store.getters['replys']
         },
     
   },
@@ -183,7 +186,8 @@ computed: {
           .collection('comment')
           .orderBy('createdAt', "desc")
           .onSnapshot((replysSnapShot) => {
-          this.replys = []
+          // this.replys = []
+          this.$store.dispatch('emptyReplys')
         //   this.$store.dispatch('emptyTweets')
           replysSnapShot.docs.forEach((snapshot) => {
           console.log(snapshot.data())
@@ -201,8 +205,8 @@ computed: {
           
         //   'tweetImage':snapshot.data().tweetImage,
         }
-          this.replys.push(data);
-        //   this.$store.dispatch('pushToTweets',data)
+          // this.replys.push(data);
+          this.$store.dispatch('pushToReplys',data)
         //   this.showTweet = true
         });
       }); 
@@ -281,5 +285,8 @@ computed: {
  .reply-message{
      font-size: 1.2rem;
      margin: 0px !important;
+ }
+ .replypage-hovers:hover{
+   cursor: pointer;
  }
 </style>

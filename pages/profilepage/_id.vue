@@ -43,22 +43,22 @@
           v-model="tabs"
           centered
         >
-          <v-tab
+          <v-tab class="v-tab"
           >
-          <p style="color:grey">
-            Item {{ n }}
+          <p style="color:grey;">
+            Tweet
           </p>
           </v-tab>
-          <v-tab
+          <v-tab class="v-tab"
           >
-          <p style="color:grey">
-            Item {{ n }}
+          <p style="color:grey;">
+            Follow
           </p>
           </v-tab>
-          <v-tab
+          <v-tab class="v-tab"
           >
-          <p style="color:grey">
-            Item {{ n }}
+          <p style="color:grey;">
+            Likes
           </p>
           </v-tab>
           <!-- <v-tab
@@ -166,5 +166,9 @@ export default {
     background: grey;
     height: 100%;
     width: 100%;
+}
+.v-tab{
+    padding: 0 ;
+    margin-right: 50px;
 }
 </style>

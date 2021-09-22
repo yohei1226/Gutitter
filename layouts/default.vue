@@ -2,7 +2,7 @@
   <div>
    <v-app>
     <!-- NavigationDrawer -->
-    <v-navigation-drawer app v-model="drawer" clipped>
+    <v-navigation-drawer app v-model="drawer" clipped style="z-index:11">
         <v-container>
             <v-list-item>
                 <v-list-item-content>

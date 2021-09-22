@@ -2,7 +2,7 @@
 <div>
   <v-card class="profile-top-image">
             <v-img
-              src="https://tabi-pocket-image.tabikobo.com/wp-content/uploads/2020/11/17135859/1-1-3.jpg"
+              src="https://www.knt.co.jp/holiday/images/zekkei_nature_mv.jpg"
               height="300"
               class="grey darken-4"
             ></v-img>

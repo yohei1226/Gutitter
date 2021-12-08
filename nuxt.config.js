@@ -32,6 +32,7 @@ export default {
     '~/plugins/auth',
     { src: '~/plugins/localStorage.js', ssr: false },
     '~/plugins/user',
+    { src: '@/plugins/vee-validate'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,5 +50,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // 以下を追記
+    transpile: [
+      "vee-validate/dist/rules"
+    ],
   }
 }

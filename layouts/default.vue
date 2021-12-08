@@ -21,6 +21,7 @@
                               no-action :append-icon="nav_list.lists ? undefined : ''" 
                               @click="toPage(nav_list)">
                     <template v-slot:activator>
+                        
                         <v-list-item-content>
                             <!-- <nuxt-link :to=nav_list.route> -->
                                 <v-list-item-title>{{nav_list.name}}</v-list-item-title>
@@ -119,6 +120,11 @@ export default {
         user () {
             return this.$store.getters['user']
         },
+        toProfile(){
+            // if(!this.$route.path === '/profile'){
+                 return '/'
+            //  }
+        }
       },
 
 
@@ -128,8 +134,8 @@ export default {
         },
 
         toPage(nav_list){
-                console.log(nav_list)
-                this.$router.replace(nav_list.route)
+                console.log(`${nav_list}あほ`)
+                 this.$router.push(nav_list.route) 
         },
     },
 }

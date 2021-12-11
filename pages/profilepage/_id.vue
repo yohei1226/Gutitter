@@ -14,11 +14,11 @@
         >
         <!-- <span class="white--text text-h5">62</span> -->
         <img
-            src="https://cdn.vuetifyjs.com/images/john.jpg"
+            src="https://thumb.ac-illust.com/3e/3e6cdb3a5f7477f5a0dd059631654f28_t.jpeg"
             alt="John"
         >
     </v-avatar>
-    <p class="profile-text">Yohei</p>
+    <p class="profile-text">{{user.name ? user.name : 'Anonymous'}}</p>
 </div>
 
 <div class="tabs-section">
@@ -131,6 +131,11 @@ export default {
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       }
     },
+    computed:{
+      user() {
+      return this.$store.getters["user"];
+    },
+    }
 }
 </script>
 

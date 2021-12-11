@@ -96,7 +96,12 @@
 
         <v-card-actions>
           <v-list-item class="grow">
-            <v-list-item-avatar color="grey darken-3" size="62">
+            <v-list-item-avatar 
+                color="grey darken-3" 
+                size="80" 
+                style="cursor:pointer;"
+                @click="moveToProfilePage(tweet.name)"
+                >
               <v-img
                 class="elevation-6"
                 alt=""
@@ -188,6 +193,9 @@
         moveToReplyPage(tweetId){
           this.$router.push(`/replypage/${tweetId}`)
         },
+        moveToProfilePage(tweetName){
+          this.$router.push(`/profilepage/${tweetName}`)
+        },
 
         // 編集機能---------------------------------------------------
         async editTweet(index){
@@ -252,7 +260,7 @@
   font-size: 25px;
 }
 .tweet-body:hover{
-  opacity: 0.5;
+  opacity: 0.7;
 
 }
 

@@ -1,6 +1,19 @@
 <template>
   <div class="test-container">
-    <SearchFunction />
+    <div class="search-contents mx-auto">
+        <label for="">ツイートを検索</label>
+      <div class="search">
+        <input type="text" v-model="keyword" class="search-input">
+        <!-- <button class="search-button">検索</button> -->
+      </div>
+      <!-- <table>
+    <tr v-for="user in filteredUsers" :key="user.id">
+        <td v-text="user.id"></td>
+        <td v-text="user.name"></td>
+        <td v-text="user.email"></td>
+    </tr>
+</table> -->
+    </div>
     <div class="pt-10 mx-auto tweet-input mb-3" style="display:flex">
       <v-text-field
         v-model="form.message.val"
@@ -76,7 +89,7 @@
       </v-menu>
     </div>
     <!--ツイートのボディ -->
-    <div v-for="(tweet, index) in tweets" :key="index" v-show="showTweet">
+    <div v-for="(tweet, index) in filteredUsers" :key="index" v-show="showTweet">
       <Tweetbody :tweet="tweet" :index="index" @fetch-tweet="newOrder" />
     </div>
 
@@ -87,11 +100,10 @@
 
 <script>
 import Tweetbody from "~/components/Tweetbody.vue";
-import  SearchFunction from "~/components/SearchFunction.vue";
 
 export default {
   middleware: ["checkLogOut"],
-  components: { Tweetbody, SearchFunction },
+  components: { Tweetbody, },
 
   data() {
     return {
@@ -102,22 +114,41 @@ export default {
         }
       },
 
-      // tweets:[],
-
+      keyword:'',
+//       users: [
+//     {
+//         id: 1,
+//         name: '鈴木太郎',
+//         email: 'suzukitaro@example.com'
+//     },
+//     {
+//         id: 2,
+//         name: '佐藤二郎',
+//         email: 'satoujiro@example.com'
+//     },
+//     {
+//         id: 3,
+//         name: '田中三郎',
+//         email: 'tanakasaburo@example.com'
+//     },
+//     {
+//         id: 4,
+//         name: '山本四郎',
+//         email: 'yamamotoshiro@example.com'
+//     },
+//     {
+//         id: 5,
+//         name: '高橋五郎',
+//         email: 'takahashigoro@example.com'
+//     },
+// ],
       deleteId: null,
-
       id: 0,
-
       show: true,
-
       dialog: false,
-
       editTweetData: "",
-
       currentImg: this.$firebase.auth().currentUser.photoURL,
-
       showTweet: false,
-
       tweetImagePreview: ""
     };
   },
@@ -182,6 +213,21 @@ export default {
     },
     tweets() {
       return this.$store.getters["tweets"];
+    },
+    filteredUsers(){
+      let users = [];
+
+    for(let i in this.tweets) {
+
+        let user = this.tweets[i];
+
+        if(user.message.indexOf(this.keyword) !== -1 ) {
+
+            users.push(user);
+
+        }
+    }
+    return users;
     }
   },
 
@@ -312,7 +358,7 @@ export default {
   background-color: white;
   background-attachment: fixed;
   height: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .tweet-body {
@@ -369,5 +415,13 @@ export default {
 
 .tweet-image-select:hover {
   opacity: 0.7;
+}
+.search-input{
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 200px;
+}
+.search-contents{
+  width: 80%;
 }
 </style>

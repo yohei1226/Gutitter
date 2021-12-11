@@ -3,7 +3,9 @@
       <v-card class="mx-auto align-center py-16 profile-contents" width="60%">
           <div class="flex items-center justify-center flex-col w-full h-full mt-8">
             <div
-              class="flex items-center justify-center w-60 h-60 bg-gray-200 rounded-full border border-white-400">
+              class="flex items-center justify-center w-60 h-60 bg-gray-200 rounded-full border border-white-400"
+              @click="selectImage"
+              >
 
                 <template v-if="postData.thumbnail">
                     <img
@@ -38,6 +40,7 @@
                     <label class="label semi-bold">
                       プロフィール画像を選択
                       <input
+                      ref="image"
                         type="file"
                         accept="image/*"
                         @change="changeImg"
@@ -104,6 +107,9 @@ middleware: ['checkLogOut'],
     },
 
     methods:{
+      selectImage() {
+      this.$refs.image.click()
+    },
        async updateImage(){
           if(this.thumbnail){
             console.log(this.thumbnail)

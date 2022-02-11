@@ -148,6 +148,7 @@ export default {
     margin-left: 100px;
     top: 200px;
     left: 18%;
+    /* ここを変更 */
     top: 300px;
     left: 200px;
     position: absolute;

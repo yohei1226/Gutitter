@@ -157,6 +157,7 @@ export default {
 
 }
 .profile-text{
+  /* テスト２変更 */
     text-align: center;
     padding-top: 34%;
     width: 200px;

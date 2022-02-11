@@ -144,8 +144,8 @@ export default {
     position: relative;
 }
 .profile-icon{
-    /* margin-top: 100px; */
-    /* margin-left: 100px; */
+    margin-top: 100px;
+    margin-left: 100px;
     top: 200px;
     left: 18%;
     /* top: 300px; */

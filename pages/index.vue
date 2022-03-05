@@ -1,9 +1,9 @@
 <template>
   <div class="test-container">
     <div class="search-contents mx-auto">
-        <label for="">ツイートを検索</label>
+      <label for>ツイートを検索</label>
       <div class="search">
-        <input type="text" v-model="keyword" class="search-input">
+        <input type="text" v-model="keyword" class="search-input" />
         <!-- <button class="search-button">検索</button> -->
       </div>
       <!-- <table>
@@ -12,46 +12,25 @@
         <td v-text="user.name"></td>
         <td v-text="user.email"></td>
     </tr>
-</table> -->
+      </table>-->
     </div>
     <div class="pt-10 mx-auto tweet-input mb-3" style="display:flex">
-      <v-text-field
-        v-model="form.message.val"
-        placeholder="発言してみよう"
-      ></v-text-field>
-      <v-btn
-        depressed
-        color="pink"
-        class="mt-3 ml-10 tweet-button"
-        @click="onSubmit"
-      >
-        Tweet
-      </v-btn>
+      <v-text-field v-model="form.message.val" placeholder="発言してみよう"></v-text-field>
+      <v-btn depressed color="pink" class="mt-3 ml-10 tweet-button" @click="onSubmit">Tweet</v-btn>
     </div>
-    <v-card width="30%" class="mx-auto" v-if="tweetImagePreview" style="">
+    <v-card width="30%" class="mx-auto" v-if="tweetImagePreview" style>
       <div style="display:flex; justify-content:flex-end">
         <i class="far fa-times-circle fa-3x" @click="closePreview"></i>
       </div>
 
-      <img
-        :src="tweetImagePreview"
-        class="w-60 h-60 object-cover border mx-auto"
-      />
+      <img :src="tweetImagePreview" class="w-60 h-60 object-cover border mx-auto" />
     </v-card>
     <div v-else></div>
 
     <!-- イメージ選択のアイコン -->
     <div class="tweet-image-section">
-      <label
-        class="far fa-image fa-3x tweet-image-select"
-        style="cursor:pointer;"
-      >
-        <input
-          type="file"
-          accept="image/*"
-          @change="changeTweetImage"
-          style="display: none"
-        />
+      <label class="far fa-image fa-3x tweet-image-select" style="cursor:pointer;">
+        <input type="file" accept="image/*" @change="changeTweetImage" style="display: none" />
       </label>
     </div>
 
@@ -59,15 +38,7 @@
       <v-menu offset-y transition="slide-x-transition">
         <template v-slot:activator="{ on, attrs }">
           <!-- <div class="flex items-center justify-center w-16 h-16 bg-gray-300 rounded-full"> -->
-          <v-btn
-            outlined
-            color="indigo"
-            v-bind="attrs"
-            v-on="on"
-            :src="user.photoURL"
-          >
-            並び替え
-          </v-btn>
+          <v-btn outlined color="indigo" v-bind="attrs" v-on="on" :src="user.photoURL">並び替え</v-btn>
           <!-- </div> -->
         </template>
         <v-list>
@@ -76,14 +47,8 @@
               class="pa-5 downMenu"
               style="cursor:pointer"
               @click="newOrder"
-              >投稿が新しい順</v-list-item-title
-            >
-            <v-list-item-title
-              class="pa-5 downMenu"
-              style="cursor:pointer"
-              @click="oldOrder"
-              >投稿が古い順</v-list-item-title
-            >
+            >投稿が新しい順</v-list-item-title>
+            <v-list-item-title class="pa-5 downMenu" style="cursor:pointer" @click="oldOrder">投稿が古い順</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -103,7 +68,7 @@ import Tweetbody from "~/components/Tweetbody.vue";
 
 export default {
   middleware: ["checkLogOut"],
-  components: { Tweetbody, },
+  components: { Tweetbody },
 
   data() {
     return {
@@ -114,34 +79,34 @@ export default {
         }
       },
 
-      keyword:'',
-//       users: [
-//     {
-//         id: 1,
-//         name: '鈴木太郎',
-//         email: 'suzukitaro@example.com'
-//     },
-//     {
-//         id: 2,
-//         name: '佐藤二郎',
-//         email: 'satoujiro@example.com'
-//     },
-//     {
-//         id: 3,
-//         name: '田中三郎',
-//         email: 'tanakasaburo@example.com'
-//     },
-//     {
-//         id: 4,
-//         name: '山本四郎',
-//         email: 'yamamotoshiro@example.com'
-//     },
-//     {
-//         id: 5,
-//         name: '高橋五郎',
-//         email: 'takahashigoro@example.com'
-//     },
-// ],
+      keyword: "",
+      //       users: [
+      //     {
+      //         id: 1,
+      //         name: '鈴木太郎',
+      //         email: 'suzukitaro@example.com'
+      //     },
+      //     {
+      //         id: 2,
+      //         name: '佐藤二郎',
+      //         email: 'satoujiro@example.com'
+      //     },
+      //     {
+      //         id: 3,
+      //         name: '田中三郎',
+      //         email: 'tanakasaburo@example.com'
+      //     },
+      //     {
+      //         id: 4,
+      //         name: '山本四郎',
+      //         email: 'yamamotoshiro@example.com'
+      //     },
+      //     {
+      //         id: 5,
+      //         name: '高橋五郎',
+      //         email: 'takahashigoro@example.com'
+      //     },
+      // ],
       deleteId: null,
       id: 0,
       show: true,
@@ -214,20 +179,17 @@ export default {
     tweets() {
       return this.$store.getters["tweets"];
     },
-    filteredUsers(){
+    filteredUsers() {
       let users = [];
 
-    for(let i in this.tweets) {
-
+      for (let i in this.tweets) {
         let user = this.tweets[i];
 
-        if(user.message.indexOf(this.keyword) !== -1 ) {
-
-            users.push(user);
-
+        if (user.message.indexOf(this.keyword) !== -1) {
+          users.push(user);
         }
-    }
-    return users;
+      }
+      return users;
     }
   },
 
@@ -416,12 +378,12 @@ export default {
 .tweet-image-select:hover {
   opacity: 0.7;
 }
-.search-input{
-    border: 1px solid gray;
-    border-radius: 5px;
-    width: 200px;
+.search-input {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 200px;
 }
-.search-contents{
+.search-contents {
   width: 80%;
 }
 </style>

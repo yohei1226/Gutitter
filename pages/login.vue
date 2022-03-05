@@ -22,9 +22,7 @@
           id="mailAddress"
         ></v-text-field>
 
-        <span v-show="form.mail.errorMessage" class="text-red text-sm">
-          {{ form.mail.errorMessage }}
-        </span>
+        <span v-show="form.mail.errorMessage" class="text-red text-sm">{{ form.mail.errorMessage }}</span>
 
         <v-text-field
           label="Password"
@@ -35,9 +33,10 @@
           @blur="validatePassWord"
         ></v-text-field>
 
-        <span v-show="form.password.errorMessage" class="text-red text-sm">
-          {{ form.password.errorMessage }}
-        </span>
+        <span
+          v-show="form.password.errorMessage"
+          class="text-red text-sm"
+        >{{ form.password.errorMessage }}</span>
 
         <div class="button-area" align="center">
           <v-btn
@@ -45,25 +44,13 @@
             v-show="!form.mail.errorMessage"
             @click="onSubmit"
             color="indigo"
-          >
-            LOGIN
-          </v-btn>
+          >LOGIN</v-btn>
 
-          <v-btn @click="allClear">
-            clear
-          </v-btn>
+          <v-btn @click="allClear">clear</v-btn>
         </div>
 
         <div class="mb-10 mt-10" align="center">
-          <v-btn
-            color="pink lighten-1"
-            dark
-            large
-            @click="guestLogIn"
-            class="gradation1"
-          >
-            ゲストログイン
-          </v-btn>
+          <v-btn color="pink lighten-1" dark large @click="guestLogIn" class="gradation1">ゲストログイン</v-btn>
         </div>
       </div>
     </v-card>
